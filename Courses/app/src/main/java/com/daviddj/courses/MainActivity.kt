@@ -1,3 +1,4 @@
+//Practica: Crea una cuadrícula terminada
 package com.daviddj.courses
 
 import android.os.Bundle
