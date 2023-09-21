@@ -64,6 +64,32 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
                     contentScale = ContentScale.Crop
                 )
             }
+
+            Column {
+                Text(
+                    text = stringResource(id = topic.name),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_medium),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_small)
+                    )
+                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_grain),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(start = dimensionResource(R.dimen.padding_medium))
+                    )
+                    Text(
+                        text = topic.availableCourses.toString(),
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_small))
+                    )
+                }
+            }
         }
     }
 }
