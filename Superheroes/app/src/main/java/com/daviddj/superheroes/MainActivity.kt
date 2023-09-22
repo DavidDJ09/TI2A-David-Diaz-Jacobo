@@ -126,7 +126,9 @@ fun SuperHeroesList(
         LazyColumn(contentPadding = it) {
             itemsIndexed(heroes){index, hero ->
                 HeroesScreen(
-                    hero = hero)
+                    hero = hero,
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                )
             }
         }
     }
