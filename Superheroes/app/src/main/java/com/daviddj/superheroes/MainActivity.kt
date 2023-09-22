@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.daviddj.superheroes.model.Hero
+import com.daviddj.superheroes.model.HeroesInfo
 import com.daviddj.superheroes.ui.theme.SuperheroesTheme
 
 class MainActivity : ComponentActivity() {
@@ -103,11 +108,25 @@ fun HeroesScreen(hero: Hero, modifier: Modifier = Modifier){
     }
 }
 
+@Composable
+fun SuperHeroesList(
+    modifier: Modifier = Modifier,
+    heroes: List<Hero>,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+){
+    LazyColumn(contentPadding = contentPadding) {
+       itemsIndexed(heroes){index, hero ->
+            HeroesScreen(
+                hero = hero)
+       }
+    }
+}
+
 @Preview("Light Theme")
 @Preview("Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun HeroPreview() {
     SuperheroesTheme(false) {
-        SuperHeroesApp()
+        SuperHeroesList(heroes = HeroesInfo.heroes)
     }
 }
