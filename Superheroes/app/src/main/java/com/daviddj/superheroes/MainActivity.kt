@@ -23,7 +23,10 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,7 +53,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SuperHeroesApp()
+                    SuperHeroesList(heroes = HeroesInfo.heroes)
                 }
             }
         }
@@ -108,18 +111,41 @@ fun HeroesScreen(hero: Hero, modifier: Modifier = Modifier){
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SuperHeroesList(
     modifier: Modifier = Modifier,
     heroes: List<Hero>,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ){
-    LazyColumn(contentPadding = contentPadding) {
-       itemsIndexed(heroes){index, hero ->
-            HeroesScreen(
-                hero = hero)
-       }
+    Scaffold(
+        topBar = {
+            SuperHeroesTopBar()
+        }
+    ){ it ->
+        LazyColumn(contentPadding = it) {
+            itemsIndexed(heroes){index, hero ->
+                HeroesScreen(
+                    hero = hero)
+            }
+        }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SuperHeroesTopBar(modifier: Modifier =  Modifier){
+    CenterAlignedTopAppBar(
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = stringResource(R.string.app_name),
+                    style = MaterialTheme.typography.displayLarge
+                )
+            }
+        },
+        modifier = modifier
+    )
 }
 
 @Preview("Light Theme")
