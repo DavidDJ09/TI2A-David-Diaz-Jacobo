@@ -151,7 +151,6 @@ fun SuperHeroesTopBar(modifier: Modifier =  Modifier){
     )
 }
 
-@Preview("Light Theme")
 @Preview("Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun HeroPreview() {
