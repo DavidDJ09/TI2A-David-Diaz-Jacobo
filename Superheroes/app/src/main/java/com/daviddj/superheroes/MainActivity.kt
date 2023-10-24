@@ -1,4 +1,4 @@
-//Entrega completa de Práctica: Compila una app de superhéroes
+//Entrega completa de Práctica: App de superhéroes
 package com.daviddj.superheroes
 
 import android.content.res.Configuration
